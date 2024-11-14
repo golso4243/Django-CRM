@@ -1,27 +1,52 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% block content%}
 
-<div class="col-md-6 offset-md-3">
+<div class="col-md-6 offset-md-3"> {% comment %} Center the registration form on the page using Bootstrap's column and offset classes {% endcomment %}
+    
     <br />
-    <h1>Register</h1>
+    <h1>Register</h1> {% comment %} Display a heading for the registration form {% endcomment %}
     <br />
 
+    {% comment %} FORM (POST for secure data submission) {% endcomment %}
     <form method="POST" action="">
+
+        {% comment %} CSRF token for security, required in Django forms to prevent cross-site request forgery attacks {% endcomment %}
         {% csrf_token %}
+
+        {% comment %} Display form errors if they exist {% endcomment %}
         {% if form.errors %}
+
+            {% comment %} Display a Bootstrap alert if there are form errors {% endcomment %}
             <div class="alert alert-warning alert-dismissible fade show" role="alert">
+
+                {% comment %} Message to notify user of errors {% endcomment %}
                 Your Form Has Errors
+
+                    {% comment %} Loop through each form field {% endcomment %}
                     {% for field in form %}
+
+                        {% comment %} Check if the field has errors {% endcomment %}
                         {% if field.errors %}
+
+                            {% comment %} Display the specific errors for each field {% endcomment %}
                             {{ field.errors }}
+
                         {% endif %}
+
                     {% endfor %}
+
+                {% comment %} Button to close the alert {% endcomment %}
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         {% endif %}
+
+        {% comment %} Render the form fields as paragraphs for a clean layout {% endcomment %}
         {{ form.as_p }}
+
         <br />
+
+        {% comment %} Submit button to register the user {% endcomment %}
         <button type="submit" class="btn btn-secondary">Register</button>
     </form>
 </div>

@@ -1,5 +1,5 @@
-from django.contrib import admin
-from .models import Record
+from django.contrib import admin  # Import Django's admin module to register models
+from .models import Record  # Import the Record model from models.py
 
-# Register your models here.
+# Register the Record model with the Django admin site
 admin.site.register(Record)

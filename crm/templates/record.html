@@ -1,12 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} 
 
 {% block content %}
 <br />
+<!-- Card component to display customer record details -->
 <div class="card">
+
+    <!-- Card header displaying the customer's full name -->
     <div class="card-header">
         <strong>{{ customer_record.first_name }} {{ customer_record.last_name }}</strong>
     </div>
+
+    <!-- Card body displaying the customer's details -->
     <div class="card-body">
+        <!-- Each line displays a different attribute of the customer record, with the label in bold -->
         <p class="card-text"><strong>Email: </strong>{{ customer_record.email }}</p>
         <p class="card-text"><strong>Phone: </strong>{{ customer_record.phone }}</p>
         <p class="card-text"><strong>Address: </strong>{{ customer_record.address }}</p>
@@ -19,7 +25,11 @@
     </div>
   </div>
   <br />
+
+  <!-- Back button to navigate to the home page -->
   <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+  <!-- Delete button to delete the current customer record, passing the record's ID -->
   <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
 
 {% endblock %}

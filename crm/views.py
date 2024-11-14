@@ -2,9 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm
+from .models import Record
 
 
 def home(request):
+
+    # Get all records in the database
+    records = Record.objects.all()
+
     # Login
     if request.method == 'POST':
         username = request.POST['username']
@@ -25,7 +30,7 @@ def home(request):
             return redirect('home')
     else:
         # If request is not POST, render the home page
-        return render(request, 'home.html', {})
+        return render(request, 'home.html', {'records': records})
 
 # TODO Implement login_user function (seperate from homepage)
 # def login_user(request):

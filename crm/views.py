@@ -39,3 +39,9 @@ def logout_user(request):
     messages.success(request, 'Logged out successfully')
     # Redirect to home page
     return redirect('home')
+
+# Register
+
+
+def register_user(request):
+    return render(request, 'register.html', {})

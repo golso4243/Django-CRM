@@ -30,6 +30,12 @@ def home(request):
 # def login_user(request):
 #     pass
 
+# Logout
+
 
 def logout_user(request):
-    pass
+    logout(request)
+    # Send a success message
+    messages.success(request, 'Logged out successfully')
+    # Redirect to home page
+    return redirect('home')

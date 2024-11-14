@@ -4,8 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 # Importing messages module for sending messages to the user interface (UI)
 from django.contrib import messages
-# Importing the SignUpForm from forms.py for user registration
-from .forms import SignUpForm
+# Importing the SignUpForm and AddRecordForm from forms.py for user registration
+from .forms import SignUpForm, AddRecordForm
 # Importing the Record model from models.py for database operations (CRUD)
 from .models import Record
 
@@ -165,6 +165,45 @@ def delete_record(request, pk):
 
         # Send an error message
         messages.error(request, 'Please Login to Delete Customer Records')
+
+        # Redirect to home page
+        return redirect('home')
+
+
+# Add Record View - Adds a new record to the database
+
+
+def add_record(request):
+
+    # Create a new instance of the AddRecordForm
+    form = AddRecordForm(request.POST or None)
+
+    # If user is authenticated
+    if request.user.is_authenticated:
+
+        # If request is POST
+        if request.method == 'POST':
+
+            # If form is valid
+            if form.is_valid():
+
+                # Save the form
+                record = form.save()
+
+                # Success Message for Record Added
+                messages.success(request, 'Record Added Successfully')
+
+                # Redirect to home page
+                return redirect('home')
+
+        # Render the add record page with the form
+        return render(request, 'add_record.html', {'form': form})
+
+    # If user is not authenticated
+    else:
+
+        # Send an error message
+        messages.error(request, 'Please Login to Add Customer Records')
 
         # Redirect to home page
         return redirect('home')

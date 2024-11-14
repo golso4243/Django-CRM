@@ -7,6 +7,7 @@ from . import views  # Import views from the current application to link with UR
 # Defining URL patterns for the CRM app.
 urlpatterns = [
     path('admin/', admin.site.urls),  # Admin site path for backend management
+
     # Home page; renders the main page for logged-in users or redirects to login
     path('', views.home, name='home'),
 
@@ -15,13 +16,19 @@ urlpatterns = [
 
     # Logout page; logs out the user and redirects to home
     path('logout/', views.logout_user, name='logout'),
+
     # Register page; handles new user registration
     path('register/', views.register_user, name='register'),
 
     # Record Specific URLs
     # Detail page for a specific record; requires primary key (pk)
     path('record/<int:pk>', views.customer_record, name='record'),
+
+    # Delete page; deletes specific record by primary key
     path('delete_record/<int:pk>', views.delete_record,
-         name='delete_record'),  # Delete page; deletes specific record by primary key
+         name='delete_record'),
+
+    # Add record page; adds a new record to the database
+    path('add_record/', views.add_record, name='add_record'),
 
 ]

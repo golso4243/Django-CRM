@@ -31,4 +31,7 @@ urlpatterns = [
     # Add record page; adds a new record to the database
     path('add_record/', views.add_record, name='add_record'),
 
+    # Update record page; updates an existing record in the database
+    path('update_record/<int:pk>', views.update_record, name='update_record'),
+
 ]

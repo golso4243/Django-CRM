@@ -29,6 +29,9 @@
   <!-- Back button to navigate to the home page -->
   <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
 
+  <!-- Update Record button to update records -->
+  <a href="{% url 'update_record' customer_record.id %}" class="btn btn-secondary">Update</a>
+
   <!-- Delete button to delete the current customer record, passing the record's ID -->
   <a href="{% url 'delete_record' customer_record.id %}" class="btn btn-danger">Delete</a>
 
